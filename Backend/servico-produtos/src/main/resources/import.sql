@@ -1,0 +1,10 @@
+insert into produtos (nome, preco, criado_em) values ('Broom - Push', '20.19', '2020-02-29');
+insert into produtos (nome, preco, criado_em) values ('Beef - Roasted, Cooked', '20.22', '2020-03-15');
+insert into produtos (nome, preco, criado_em) values ('Syrup - Monin - Blue Curacao', '77.13', '2020-01-20');
+insert into produtos (nome, preco, criado_em) values ('Bread - English Muffin', '54.29', '2020-04-03');
+insert into produtos (nome, preco, criado_em) values ('Sugar - White Packet', '82.84', '2020-02-22');
+insert into produtos (nome, preco, criado_em) values ('French Kiss Vanilla', '14.80', '2020-06-10');
+insert into produtos (nome, preco, criado_em) values ('Wine - Coteaux Du Tricastin Ac', '76.71', '2020-06-20');
+insert into produtos (nome, preco, criado_em) values ('Hot Chocolate - Individual', '12.76', '2020-06-14');
+insert into produtos (nome, preco, criado_em) values ('Appetizer - Escargot Puff', '64.58', '2020-01-02');
+insert into produtos (nome, preco, criado_em) values ('The Pop Shoppe Pinapple', '45.30', '2020-02-05');
