@@ -30,7 +30,16 @@ public class ProdutoController {
 	@GetMapping("/ver/{id}")
 	public Produto detalhe(@PathVariable Long id) {
 		System.out.println("PORTA: " + port);
-
+		
+		
+//		try {
+//			Thread.sleep(2000L);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+		
 		return produtoService.findById(id);
 	}
 
