@@ -1,10 +1,17 @@
 package com.claudemirojr.app.items.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,8 +21,16 @@ import com.claudemirojr.app.items.models.Produto;
 import com.claudemirojr.app.items.models.service.IItemService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
+@RefreshScope
 @RestController
 public class ItemController {
+	
+	@Autowired
+	private Environment env;
+	
+	@Value("${configuracao.texto}")
+	private String texto;
+	
 
 	@Autowired
 	@Qualifier("serviceFeign")
@@ -42,6 +57,21 @@ public class ItemController {
 		produto.setCriadoEm( new Date() );
 		
 		return new Item(produto, 1);
+	}
+	
+	
+	@GetMapping("/obter-config")
+	public ResponseEntity<?> obterConfig() {
+		Map<String, String> json = new HashMap<>();
+		
+		json.put("texto", texto);
+		
+		if ( env.getActiveProfiles().length>0 && env.getActiveProfiles()[0].equals("dev") ) {
+			json.put("Autor", env.getProperty("configuracao.autor.name"));
+			json.put("Email", env.getProperty("configuracao.autor.email"));
+		}
+		
+		return new ResponseEntity<Map<String, String>>(json, HttpStatus.OK);
 	}
 	
 
